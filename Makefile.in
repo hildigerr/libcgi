@@ -18,7 +18,8 @@ FLAGS = -Wall -fpic
 OBJS = src/error.o src/cgi.o src/session.o src/base64.o src/md5.o \
 	src/string.o src/general.o src/list.o src/cookie.o
 
-.c.o: $(CC) $(FLAGS) -c $<
+.c.o:
+	$(CC) $(FLAGS) -c $< -o $@
 
 all: $(OBJS) src/libcgi.so
 
