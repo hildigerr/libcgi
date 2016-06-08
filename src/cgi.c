@@ -459,7 +459,7 @@ char *cgi_escape_special_chars(char *str)
 
 	tmp[j] = '\0';
 
-	return tmp;
+	return (char *)tmp;
 }
 
 /**

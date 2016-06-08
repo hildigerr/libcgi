@@ -78,7 +78,7 @@ char *md5(const char *str)
 
 	// initializing a context that will content the encrypted string
 	MD5Init(&context);
-	MD5Update(&context, str, strlen(str));
+	MD5Update(&context, (unsigned char const *)str, strlen(str));
 
 	// finally, here is a final string encrypted in hex float format
 	MD5Final(md, &context);
@@ -248,7 +248,7 @@ MD5Final(unsigned char digest[16], struct MD5Context *ctx)
 	MD5Transform(ctx->buf, (uint32 *)ctx->in);
 	byteReverse((unsigned char *)ctx->buf, 4);
 	memcpy(digest, ctx->buf, 16);
-	memset(ctx, 0, sizeof(ctx));	/* In case it's sensitive */
+	memset(ctx, 0, sizeof(struct MD5Context));	/* In case it's sensitive */
 }
 
 #ifndef ASM_MD5
